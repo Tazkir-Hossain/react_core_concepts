@@ -207,33 +207,69 @@ import { useEffect, useState } from "react";
 // }
 
 ///////////// video 12 Load dynamic data ,Api call useEffect integrate state /////////////
+// function App() {
+//   return (
+//     <div className="App">
+//       <header className="App-header">
+//         <Users></Users>
+//       </header>
+//     </div>
+//   );
+// }
+
+// function Users() {
+//   const [users, setUsers] = useState([]);
+
+//   useEffect(() => {
+//     fetch("https://jsonplaceholder.typicode.com/users")
+//       .then((res) => res.json())
+//       .then((data) => setUsers(data));
+//   }, []);
+//   return (
+//     <div>
+//       <h3>Dynamic Users:{users.length}</h3>
+//       <ul>
+//         {users.map((user) => (
+//           <li>{user.name}</li>
+//         ))}
+//       </ul>
+//     </div>
+//   );
+// }
+
+/////////// 33-8 event handler state update and pass state Recap/////////
+
 function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <Users></Users>
+        <Counter></Counter>
       </header>
     </div>
   );
 }
 
-function Users() {
-  const [users, setUsers] = useState([]);
-
-  useEffect(() => {
-    fetch("https://jsonplaceholder.typicode.com/users")
-      .then((res) => res.json())
-      .then((data) => setUsers(data));
-  }, []);
+function Counter() {
+  const [count, setCount] = useState(10);
+  function handleIncrease() {
+    // const newCount = count + 1;
+    // setCount(newCount);
+    setCount(count + 1);
+  }
+  function handleDecrease() {
+    setCount(count - 1);
+  }
   return (
     <div>
-      <h3>Dynamic Users:{users.length}</h3>
-      <ul>
-        {users.map((user) => (
-          <li>{user.name}</li>
-        ))}
-      </ul>
+      <h1>Number Of Count:{count}</h1>
+      <button onClick={handleIncrease}>Increase</button>
+      <button onClick={handleDecrease}>Decrease</button>
+      <MovieDisplay movies={count}></MovieDisplay>
     </div>
   );
 }
+function MovieDisplay(props) {
+  return <h4>Movies I have acted:{props.movies}</h4>;
+}
+
 export default App;
